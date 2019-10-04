@@ -1,6 +1,6 @@
  *{
-  margin:0 ;
-  padding: 15px;
+  margin:0 ;/* significa margens colocamos em 0 para resertar*/
+  padding: 15px;/* e a distancia entre o conteudo de um elemento e suas bordas ele server pra definir a distancia pra cada lado e resetamos*/
 
  }
 
@@ -8,7 +8,7 @@
     body{   /*usamos ele para resetar as margens e os padding */
       margin: 0;/* significa margens colocamos em 0 para resertar*/
       padding: 0;/* e a distancia entre o conteudo de um elemento e suas bordas ele server pra definir a distancia pra cada lado e resetamos*/
-      background-color: with;/*deixa o fundo preto*/
+      background-color: with;/*deixa o fundo branco*/
     }
     h1{
       text-align: center; /* usamos essa tag para centralizar o h1*/
@@ -25,7 +25,7 @@
       list-style: none;/* essa tag serve para escolhemos o tipo de lista que vamos usar*/
       text-align: center;/* aqui estamos centralizando o texto*/
       font-size: 22px;/* usamos isso para definir o tamanho do texto e colocamos em 22 pixel*/
-      color: #00FA9A;
+      color: #00FA9A;/*colocamos para ter a cor branca*/
 
     }
 
@@ -45,6 +45,6 @@
 
     ul li a:hover{
       background: #4F4F4F;/* quando colocamos o mouse encima do a fica com o fundo branco*/
-      color: white; /*deixa as letras com a cor vermelha quando passamos o curso do mouse*/
-      box-shadow: #00FA9A;/*usamos essa tag pra aficionar algumas sombras branca*/
+      color: white; /*deixa as letras com a cor branca quando passamos o curso do mouse*/
+      box-shadow: #00FA9A;/*usamos essa tag para fixcionar algumas sombras branca*/
     }
