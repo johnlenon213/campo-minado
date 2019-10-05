@@ -1,0 +1,50 @@
+ *{
+  margin:0 ;/* significa margens colocamos em 0 para resertar*/
+  padding: 15px;/* e a distancia entre o conteudo de um elemento e suas bordas ele server pra definir a distancia pra cada lado e resetamos*/
+
+ }
+
+
+    body{   /*usamos ele para resetar as margens e os padding */
+      margin: 0;/* significa margens colocamos em 0 para resertar*/
+      padding: 0;/* e a distancia entre o conteudo de um elemento e suas bordas ele server pra definir a distancia pra cada lado e resetamos*/
+      background-color: with;/*deixa o fundo preto*/
+    }
+    h1{
+      text-align: center; /* usamos essa tag para centralizar o h1*/
+      font-size: 100px;/* usamos isso para definir o tamanho do texto e colocamos em 50 pixel*/
+      background-color: black;/* a linha fica com o fundo preto*/
+      color: white ;/*deixa as letras com a cor braca*/
+      width: 100%;
+      height: 150px;
+    
+     }
+     ul{
+      margin: 0;/* significa margens colocamos em 0 para resertar*/
+      background-color: black;/* a linha fica com o fundo preto*/
+      list-style: none;/* essa tag serve para escolhemos o tipo de lista que vamos usar*/
+      text-align: center;/* aqui estamos centralizando o texto*/
+      font-size: 22px;/* usamos isso para definir o tamanho do texto e colocamos em 22 pixel*/
+      color: #00FA9A;/*deixa as letras com outra cor*/
+
+    }
+
+    ul li{
+      display: inline;/*essa tag serve para falar o tipo de caixa do arquivo */
+    }
+
+    ul li a{
+      text-decoration:none;/*essa tag serve para decora o texto e com none fala que o texto nao vai ter decoração ex:ele não vai ta sublinado*/
+      padding: 10px 15px;/* colocamos que a distancia dele pra borda seja de 10 pixel por 15 pixel*/
+      display: inline-block;/*essa tag serve para falar o tipo de caixa do arquivo e essa e para O elemento gera uma caixa de elemento de bloco que fluirá com o conteúdo circundante, como se fosse uma única caixa embutida (se comportando como um elemento substituído)*/
+      color: white;/*colocamos para ter a cor branca*/
+      margin: 15px 10px;/* que a margem dele seja de 15 pixel por 10 pixel*/
+      border: 1px solid black;/* aqui e onde criamos uma borda e especificamos o tamanho em 1 pixel e na cor branca*/
+      border-radius: 20px 20px;/*aqui estamos falando do raio dela onde colocamos 20pixel por 20 pixel*/
+    }
+
+    ul li a:hover{
+      background: #4F4F4F;/* quando colocamos o mouse encima do a fica com o fundo de outra cor*/
+      color: white; /*deixa as letras com a cor branca quando passamos o curso do mouse*/
+      box-shadow: #00FA9A;/*usamos essa tag pra aficionar algumas sombras*/
+    }
