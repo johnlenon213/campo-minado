@@ -53,7 +53,8 @@ app.get('/JOGAR', function (req, res) {
 //começo da pagina
     res.write('<html>');
     res.write('<head>');
-    res.write('<body style= "background-color: black" >');
+    res.write('<link rel="stylesheet" type="text/css" href="css/bomb.css">')
+    res.write('<body>');
     res.write('<table>');
  
 //funçao para ficar aleatorio ao clicar no botão reset
@@ -74,17 +75,17 @@ app.get('/JOGAR', function (req, res) {
     if (primeira) {
       table = shuffle(table);
       primeira = false;
-    } 
+    }
 
 
 //reset table
 var i = req.query.i;
-    
+   
 var j = req.query.j;
 
 var reset= req.query.reset;
 
-  limpa(1); 
+  limpa(1);
 
     function limpa(valor){
       if (reset == 1){
@@ -107,15 +108,15 @@ var reset= req.query.reset;
         console.log(`voce perdeu`);
         estaVivo = false;
 
-    //se !estaVivo escreva uma div "game over" (div 'GAME OVER')       
-    res.write('<div>')
-    res.write('<h1 style="text-align:center; color:white; font-family:Monospace; font-size: 100px; ">GAME OVER!</h1>')
+    //se !estaVivo escreva uma div "game over" (div 'GAME OVER')      
+    res.write('<div id="gameover">')
+    res.write('<h1>GAME OVER!</h1>')
     res.write('</div>')
     }
 }
 
     //tabela do campo
-    res.write('<div>')
+    res.write('<div id="cm">')
     res.write('<table style="margin:auto;">');
    
 
@@ -124,15 +125,15 @@ var cor = true;
 
     for (var i = 0; i < table.length; i++) {
       res.write('<tr>');
-        
+       
         for (var j = 0; j <table[i].length; j++) {
         if (table2[i][j] == 0 && cor == true) {
-          // celula vazia com link 
-         res.write(`<td style="width:  70px; height: 70px; border: 1px solid black; background-color:gray;   text-decoration: none; color:gray;"><a style="text-decoration:none; font-size:30px; color:gray;" href="/JOGAR?i=${i}&j=${j}">click</a></td>`);
+          // celula vazia com link
+         res.write(`<td id="td1"><a href="/JOGAR?i=${i}&j=${j}">click</a></td>`);
         }
          // celula com valor
         else  {
-        res.write(`<td style="width:  70px; height: 70px; border: 1px solid black; background-color:#D6DBDF; font-family:Monospace; font-size: 25px; text-align:center; text-decoration: none; ">${table[i][j]} </td>`);
+        res.write(`<td id="td2">${table[i][j]} </td>`);
         }
       }
         res.write('</tr>');
@@ -143,15 +144,15 @@ var cor = true;
     res.write('</div>')
 
 
-    //botoes para voltar a pag inicial e reset
-    res.write('<div>')
+   //botoes para voltar a pag inicial e reset
+    res.write('<div id="botoes">')
     res.write('<br>')
     res.write('<br>')
-    res.write('<a style="margin-left:49%;" href="JOGAR?reset=1"><button classe="RESET">RESET</button></a>')
+    res.write('<a href="JOGAR?reset=1" classe="RESET">RESET</a>')
     res.write('<br>')
     res.write('<br>')
     res.write('<br>')
-    res.write('<a style="margin-left:49%;" href="/"><button classe="VOLTAR">VOLTAR</button></a>')
+    res.write('<a href="/" classe="VOLTAR">VOLTAR</a>')
     res.write('</div>')
     res.write('</body>');
     res.write('</head>');
