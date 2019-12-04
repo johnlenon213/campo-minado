@@ -11,17 +11,18 @@ app.get('/', function(req, res) {
 });
 
 
+var bom = "*";
 //variaveis globais
 var table = [
-   [0, 0, 1, '*', 1, 0, 0, 0, 0],
-   [1, 1, 1, 1, 1, 0, 0, 0, 0],
-   ['*', 2, 0, 0, 0, 0, 0, 0, 0],
-   ['*', 2, 0, 0, 0, 1, 1, 1, 0],
-   [1, 1, 0, 0, 0, 1, '*', 1, 0],
-   [1, 1, 1, 0, 1, 2, 2, 1, 0],
-   [2, '*', 3, 1, 0, 1, '*', 1, 0],
-   [1, '*', 3, '*', 2, 2, 3, 2, 1],
-   [1, 1, 2, 1, 1, 1, '*', '*', 1]
+   [0, 0, 0, 0, 0, 0, 0, 0, 0],
+   [0, 0, 0, 0, 0, 0, 0, 0, 0],
+   [0, 0, 0, 0, 0, 0, 0, 0, 0],
+   [0, 0, 0, 0, 0, 0, 0, 0, 0],
+   [0, 0, 0, 0, 0, 0, 0, 0, 0],
+   [0, 0, 0, 0, 0, 0, 0, 0, 0],
+   [0, 0, 0, 0, 0, 0, 0, 0, 0],
+   [0, 0, 0, 0, 0, 0, 0, 0, 0],
+   [0, 0, 0, 0, 0, 0, 0, 0, 0]
  ];
 
 
@@ -36,6 +37,7 @@ var table2 = [
    [0, 0, 0, 0, 0, 0, 0, 0, 0],
    [0, 0, 0, 0, 0, 0, 0, 0, 0]
  ];
+ colocarBombas();
 
 
 var array= [];
@@ -57,30 +59,12 @@ app.get('/JOGAR', function (req, res) {
     res.write('<body>');
     res.write('<table>');
  
-//funçao para ficar aleatorio ao clicar no botão reset
-  function shuffle (array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
 
-  while (0 !== currentIndex) {
-
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-  return array;
-}
-    if (primeira) {
-      table = shuffle(table);
-      primeira = false;
-    }
-
+ 
 
 //reset table
 var i = req.query.i;
-   
+ 
 var j = req.query.j;
 
 var reset= req.query.reset;
@@ -90,12 +74,13 @@ var reset= req.query.reset;
     function limpa(valor){
       if (reset == 1){
         primeira= true;
-        shuffle[table, array];
+        // shuffle[table, array];
 
         for (var i = 0; i < table2.length; i++) {
         for (var j = 0; j <table2[i].length; j++) {
           table2[i][j] = 0;
       }
+      colocarBombas();
     }
   }
     // randomizar as bombas
@@ -108,7 +93,7 @@ var reset= req.query.reset;
         console.log(`voce perdeu`);
         estaVivo = false;
 
-    //se !estaVivo escreva uma div "game over" (div 'GAME OVER')      
+    //se !estaVivo escreva uma div "game over" (div 'GAME OVER')    
     res.write('<div id="gameover">')
     res.write('<h1>GAME OVER!</h1>')
     res.write('</div>')
@@ -118,17 +103,21 @@ var reset= req.query.reset;
     //tabela do campo
     res.write('<div id="cm">')
     res.write('<table style="margin:auto;">');
-   
+ 
 
     // impressao da tabela
-var cor = true;
+
+
+
 
     for (var i = 0; i < table.length; i++) {
       res.write('<tr>');
-       
+     
         for (var j = 0; j <table[i].length; j++) {
-        if (table2[i][j] == 0 && cor == true) {
+
+        if (table2[i][j] == 0) {
           // celula vazia com link
+// incrementa(i, j);
          res.write(`<td id="td1"><a href="/JOGAR?i=${i}&j=${j}">click</a></td>`);
         }
          // celula com valor
@@ -181,3 +170,49 @@ var port = 3001;
 app.listen(port, function() {
     console.log(`Escutando na porta ${port}...`);
 })
+
+function contarBombas() {
+  var bombas = 0;
+  for (i = 0; i < table2.length; i++ ) {
+    for (j = 0; j < table[i].length; j++) {
+      if (table[i][j] == bom) {
+        bombas++
+      }
+    }
+  }
+  return bombas;
+}
+
+function colocarBombas() {
+  for (i = 0; i < 9; i++) {
+    for (j = 0; j < 9; j++) {
+      table[i][j] = 0;
+    }
+  }
+  while (contarBombas() < 10) {
+    var i = Math.floor(Math.random() * 9 * .99)
+    var j = Math.floor(Math.random() * 9 * .99)
+    console.log(i, j)
+    if (table[i][j] != bom) { // nao era bomba
+      table[i][j] = bom;
+      incrementa(i - 1, j - 1)
+      incrementa(i - 1, j)
+      incrementa(i - 1, j + 1)
+      incrementa(i, j + 1)
+      incrementa(i, j - 1)
+      incrementa(i + 1, j - 1)
+      incrementa(i + 1, j)
+      incrementa(i + 1, j + 1)
+    }
+  }
+  console.table(table)
+}
+
+function incrementa(i, j) {
+  if (i < 0 || i > 8 || j < 0 || j > 8) {
+    return
+  }
+  if (table[i][j] != bom) {
+    table[i][j]++;
+  }
+}
