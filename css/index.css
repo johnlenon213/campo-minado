@@ -1,6 +1,6 @@
 body {
   width: 1000px;
-  height: 700px;
+  height: 920px;
   margin-top: 0;
   margin-left: auto;
   margin-bottom: 0;
@@ -8,13 +8,10 @@ body {
   background-color: #ffffff;
   background-image: url(img/img2.png);
   opacity: url("img/img2.png");
-  height: 500px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: center;
-  transition: background-color: 0,5s;
-
 }
 
 
@@ -31,7 +28,7 @@ ul {
 li {
   float: left;
   display: inline-block;
-  margin: 0 10px;
+  margin: 0 15px;
 }
 
 
@@ -66,7 +63,7 @@ nav {
 
 
 h1 {
-  margin-top: 180px;
+  margin-top: 300px;
   margin-left: auto;
   margin-bottom: 15px;
   margin-right: auto;
