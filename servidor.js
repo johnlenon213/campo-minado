@@ -76,6 +76,7 @@ var reset= req.query.reset;
     function limpa(valor){
       if (reset == 1){
         primeira= true;
+        estaVivo = true;
         // shuffle[table, array];
 
         for (var i = 0; i < table2.length; i++) {
@@ -85,21 +86,62 @@ var reset= req.query.reset;
       colocarBombas();
     }
   }
-    // randomizar as bombas
 }
-    if (i >= 0 && j >= 0 && i < table2.length && j < table2[0].length){
+//para abrir os zero
+
+function abrir(i, j) {
+	i = parseInt(i)
+	j = parseInt(j)
+	console.log(`abrindo celula ${i}, ${j}`)
+	if (i < 0 || j < 0 || i >= table.length || j >= table[0].length) {
+		return;
+	}
+	if (table2[i][j] == 1) {
+		return;
+	}
+	table2[i][j] = 1
+	if (table[i][j] == 0) {
+		abrir(i - 1, j)
+		abrir(i + 1, j)
+		abrir(i, j + 1)
+		abrir(i, j - 1)
+		
+		abrir(i - 1, j + 1)
+		abrir(i + 1, j + 1)
+		abrir(i - 1, j - 1)
+		abrir(i + 1, j - 1)
+	}
+}
+
+function soma (table){
+	var soma= 0;
+	for (var i = 0; i < table.length; i++) {
+        for (var j = 0; j <table[i].length; j++) {
+        	soma = soma + table[i][j];
+ }
+}
+return soma;
+}
+
+    if (i >= 0 && j >= 0 && i < table2.length && j < table2[0].length && estaVivo){
     console.log(`vc clicou na celula ${i},${j}`)
-        table2[i][j]= 1;
+        abrir(i, j)
 
         if(table[i][j] == '*'){
         console.log(`voce perdeu`);
         estaVivo = false;
-
-    //se !estaVivo escreva uma div "game over" (div 'GAME OVER')    
     res.write('<div id="gameover">')
     res.write('<h1>GAME OVER!</h1>')
     res.write('</div>')
-    }
+    	}
+    
+         else if (soma(table) == 71 && table2 != 'BB' && estaVivo){
+           estaVivo = true;
+         	    res.write('<div id="gameover">')
+                res.write('<h1>YOU WIN!</h1>')
+                res.write('</div>')
+         }
+    //se !estaVivo escreva uma div "game over" (div 'GAME OVER')    
 }
 
     //tabela do campo
@@ -120,7 +162,13 @@ var reset= req.query.reset;
         }
          // celula com valor
         else  {
-        res.write(`<td id="td2">${table[i][j]} </td>`);
+        	var oi = table[i][j];
+        	if (oi == 0) {
+        		oi = '';
+        	} else if (oi == '*') {
+        		oi = 'BB'/*res.write(`<img src ="css/img/bomba.png"></img>`);*/
+        	}
+        res.write(`<td id="td2">${oi} </td>`);
         }
       }
         res.write('</tr>');
