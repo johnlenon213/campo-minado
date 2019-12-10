@@ -58,6 +58,12 @@ table {
 	text-decoration: none;
 }
 
+/*bomba img*/
+#cm td, #td1 img {
+	width: 65px;
+	height: 65px;
+}
+
 
 #botoes li {
     float: left;
