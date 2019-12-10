@@ -132,22 +132,21 @@ var reset= req.query.reset;
     res.write('</table>');
     res.write('</div>')
 
-
+    
    //botoes para voltar a pag inicial e reset
     res.write('<div id="botoes">')
+    res.write('<nav>')
     res.write('<br>')
-    res.write('<br>')
-    res.write('<a href="JOGAR?reset=1" classe="RESET">RESET</a>')
-    res.write('<br>')
-    res.write('<br>')
-    res.write('<br>')
-    res.write('<a href="/" classe="VOLTAR">VOLTAR</a>')
+    res.write('<li><a href="JOGAR?reset=1" classe="RESET">RESET</a></li>')
+    res.write('<li><a href="/" classe="VOLTAR">VOLTAR</a></li>')
+    res.write('</nav>')
     res.write('</div>')
     res.write('</body>');
     res.write('</head>');
     res.write('</html>');
     res.end();
 });
+
 
 app.get('/ajuda', function(req, res) {
     res.render( __dirname + '/html/AJUDA.html');
