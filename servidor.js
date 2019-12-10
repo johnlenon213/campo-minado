@@ -12,7 +12,9 @@ app.get('/', function(req, res) {
 
 
 var bom = "*";
+
 //variaveis globais
+
 var table = [
    [0, 0, 0, 0, 0, 0, 0, 0, 0],
    [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -102,14 +104,10 @@ var reset= req.query.reset;
 
     //tabela do campo
     res.write('<div id="cm">')
-    res.write('<table style="margin:auto;">');
+    res.write('<table>');
  
 
     // impressao da tabela
-
-
-
-
     for (var i = 0; i < table.length; i++) {
       res.write('<tr>');
      
@@ -117,7 +115,7 @@ var reset= req.query.reset;
 
         if (table2[i][j] == 0) {
           // celula vazia com link
-// incrementa(i, j);
+      // incrementa(i, j);
          res.write(`<td id="td1"><a href="/JOGAR?i=${i}&j=${j}">click</a></td>`);
         }
          // celula com valor
@@ -132,7 +130,7 @@ var reset= req.query.reset;
     res.write('</table>');
     res.write('</div>')
 
-    
+
    //botoes para voltar a pag inicial e reset
     res.write('<div id="botoes">')
     res.write('<nav>')
@@ -146,7 +144,6 @@ var reset= req.query.reset;
     res.write('</html>');
     res.end();
 });
-
 
 app.get('/ajuda', function(req, res) {
     res.render( __dirname + '/html/AJUDA.html');
@@ -170,6 +167,7 @@ app.listen(port, function() {
     console.log(`Escutando na porta ${port}...`);
 })
 
+
 function contarBombas() {
   var bombas = 0;
   for (i = 0; i < table2.length; i++ ) {
@@ -181,6 +179,7 @@ function contarBombas() {
   }
   return bombas;
 }
+
 
 function colocarBombas() {
   for (i = 0; i < 9; i++) {
@@ -206,6 +205,7 @@ function colocarBombas() {
   }
   console.table(table)
 }
+
 
 function incrementa(i, j) {
   if (i < 0 || i > 8 || j < 0 || j > 8) {
