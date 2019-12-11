@@ -10,10 +10,9 @@ app.get('/', function(req, res) {
     res.render( __dirname + '/html/index.html');
 });
 
+//variaveis globais
 
 var bom = "*";
-
-//variaveis globais
 
 var table = [
    [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -27,7 +26,6 @@ var table = [
    [0, 0, 0, 0, 0, 0, 0, 0, 0]
  ];
 
-
 var table2 = [
    [0, 0, 0, 0, 0, 0, 0, 0, 0],
    [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -39,8 +37,8 @@ var table2 = [
    [0, 0, 0, 0, 0, 0, 0, 0, 0],
    [0, 0, 0, 0, 0, 0, 0, 0, 0]
  ];
- colocarBombas();
 
+colocarBombas();
 
 var array= [];
 
@@ -61,10 +59,7 @@ app.get('/JOGAR', function (req, res) {
     res.write('<body>');
     res.write('<table>');
  
-
- 
-
-//reset table
+//funcao - reset table
 var i = req.query.i;
  
 var j = req.query.j;
@@ -77,7 +72,6 @@ var reset= req.query.reset;
       if (reset == 1){
         primeira= true;
         estaVivo = true;
-        // shuffle[table, array];
 
         for (var i = 0; i < table2.length; i++) {
         for (var j = 0; j <table2[i].length; j++) {
@@ -87,10 +81,10 @@ var reset= req.query.reset;
     }
   }
 }
-//para abrir os zero
 
+//funcao para abrir os zero
 function abrir(i, j) {
- i = parseInt(i)
+ i = parseInt(i) //transforma o i, j em numeros inteiros
  j = parseInt(j)
  console.log(`abrindo celula ${i}, ${j}`)
  if (i < 0 || j < 0 || i >= table.length || j >= table[0].length) {
@@ -113,36 +107,39 @@ function abrir(i, j) {
  }
 }
 
+//funcao para varrer o array, somar os elementos e mostrar quando perde ou ganha
 function soma (table){
  var soma = 0;
  for (var i = 0; i < table.length; i++) {
         for (var j = 0; j <table[i].length; j++) {
          soma = soma + table[i][j];
- }
-}
-return soma;
-}
-
-    if (i >= 0 && j >= 0 && i < table2.length && j < table2[0].length && estaVivo){
-    console.log(`vc clicou na celula ${i},${j}`)
-        abrir(i, j)
-
-        if(table[i][j] == '*'){
-        console.log(`voce perdeu`);
-        estaVivo = false;
-    res.write('<div id="gameover">')
-    res.write('<h1>GAME OVER!</h1>')
-    res.write('</div>')
+       }
      }
-   
-         else if (soma(table2) == 71 && table2 != 'BB' && estaVivo){
-           estaVivo = true;
-              res.write('<div id="gameover">')
-                res.write('<h1>YOU WIN!</h1>')
-                res.write('</div>')
-         }
-    //se !estaVivo escreva uma div "game over" (div 'GAME OVER')   
-}
+     return soma;
+   }
+
+   if (i >= 0 && j >= 0 && i < table2.length && j < table2[0].length && estaVivo){
+    console.log(`vc clicou na celula ${i},${j}`)
+    abrir(i, j)
+
+    if(table[i][j] == '*'){
+      console.log(`voce perdeu`);
+      estaVivo = false;
+
+      res.write('<div id="gameover">')
+      res.write('<h1>GAME OVER!</h1>')
+      res.write('</div>')
+    }
+
+    else if (soma(table2) == 71 && table2 != 'BB' && estaVivo){
+      estaVivo = true;
+      
+      //se !estaVivo escreva uma div "game over" (div 'GAME OVER')   
+      res.write('<div id="gameover">')
+      res.write('<h1>YOU WIN!</h1>')
+      res.write('</div>')
+    }
+  }
 
     //tabela do campo
     res.write('<div id="cm">')
@@ -152,42 +149,33 @@ return soma;
     // impressao da tabela
     for (var i = 0; i < table.length; i++) {
       res.write('<tr>');
-    
-        for (var j = 0; j <table[i].length; j++) {
 
+      for (var j = 0; j <table[i].length; j++) {
         if (table2[i][j] == 0) {
-          // celula vazia com link
-      // incrementa(i, j);
+          
+         // celula vazia com link
          res.write(`<td id="td1"><a href="/JOGAR?i=${i}&j=${j}">click</a></td>`);
-        }
+       }
          // celula com valor
-        else  {
+         else  {
          var oi = table[i][j];
          if (oi == 0) {
           oi = '';
-         } else if (oi == '*') {
+        } else if (oi == '*') {
           oi = 'BB'
-          /*res.write(`<img src ="css/img/bomba.png"></img>`);*/
          }
          if ( oi == 'BB'){
           res.write(`<td id="td0" class="imagem"><img src ="css/img/cabum.gif"></img></td>`);
-         }
-         else if ( oi  == '' || oi <= 4){
-        res.write(`<td id="td2">${oi} </td>`);
+        } else if ( oi  == '' || oi <= 4) {
+          res.write(`<td id="td2">${oi} </td>`);
+        }
       }
-         }
-      }
-        res.write('</tr>');
-      }
-
+    }
+    res.write('</tr>');
+  }
 
     res.write('</table>');
     res.write('</div>')
-
-
-    res.write('</table>');
-    res.write('</div>')
-
 
    //botoes para voltar a pag inicial e reset
     res.write('<div id="botoes">')
@@ -217,15 +205,15 @@ app.get('/COMOJOGAR', function(req, res) {
 
 app.use('/css',express.static(__dirname + '/css'));
 
-
-
-
 var port = 3001;
+
 app.listen(port, function() {
     console.log(`Escutando na porta ${port}...`);
 })
 
+//FUNCOES
 
+//funcao para contar as bombas - chamada na funcao colocarBombas
 function contarBombas() {
   var bombas = 0;
   for (i = 0; i < table2.length; i++ ) {
@@ -238,17 +226,19 @@ function contarBombas() {
   return bombas;
 }
 
-
+//funcao para colocar as bombas
 function colocarBombas() {
   for (i = 0; i < 9; i++) {
     for (j = 0; j < 9; j++) {
       table[i][j] = 0;
     }
   }
+  
   while (contarBombas() < 10) {
     var i = Math.floor(Math.random() * 9 * .99)
     var j = Math.floor(Math.random() * 9 * .99)
     console.log(i, j)
+    
     if (table[i][j] != bom) { // nao era bomba
       table[i][j] = bom;
       incrementa(i - 1, j - 1)
@@ -264,12 +254,11 @@ function colocarBombas() {
   console.table(table)
 }
 
-
+//funcao incrementa as bombas - chamada na funcao colocarBombas
 function incrementa(i, j) {
   if (i < 0 || i > 8 || j < 0 || j > 8) {
     return
-  }
-  if (table[i][j] != bom) {
+  } if (table[i][j] != bom) {
     table[i][j]++;
   }
 }
