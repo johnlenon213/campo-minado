@@ -58,17 +58,18 @@ table {
 }
 
 /*bomba img*/
-#cm td, #td1 img {
-	width: 65px;
-	height: 65px;
+#cm td, #td0 img {
+	width: 70px;
+	height: 70px;
+        border-radius: 12px;
 }
 
 
 #botoes li {
-    float: left;
-    display: flex;
-    justify-content: center;
-    margin: 0 10px;
+       float: left;
+       display: flex;
+       justify-content: center;
+       margin: 0 10px;
 }
 
 
