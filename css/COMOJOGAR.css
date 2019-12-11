@@ -1,4 +1,5 @@
 body {
+	transition: 0.8s;
 	width: 1000px;
 	height: 920px;
 	margin-top: 0;
