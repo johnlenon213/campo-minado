@@ -125,7 +125,8 @@ function soma (table){
     if(table[i][j] == '*'){
       console.log(`voce perdeu`);
       estaVivo = false;
-
+        
+      //se !estaVivo escreva uma div "game over" (div 'GAME OVER')
       res.write('<div id="gameover">')
       res.write('<h1>GAME OVER!</h1>')
       res.write('</div>')
@@ -134,7 +135,7 @@ function soma (table){
     else if (soma(table2) == 71 && table2 != 'BB' && estaVivo){
       estaVivo = true;
       
-      //se !estaVivo escreva uma div "game over" (div 'GAME OVER')   
+      //se estaVivo escreva uma div "you win" (div 'GAME OVER')   
       res.write('<div id="gameover">')
       res.write('<h1>YOU WIN!</h1>')
       res.write('</div>')
