@@ -1,11 +1,12 @@
 body {
+  transition: 0.8s;
   width: 1000px;
   height: 920px;
   margin-top: 0;
   margin-left: auto;
   margin-bottom: 0;
   margin-right: auto;
-  background-color: #ffffff;
+  background-color: #000000;
   background-image: url(img/img2.png);
   opacity: url("img/img2.png");
   background-position: center;
@@ -33,6 +34,7 @@ li {
 
 
 li a {
+  transition: 0.8s;
   text-decoration: none;
   text-align: center;
   font-family:Monospace;
