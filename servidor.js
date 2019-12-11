@@ -166,13 +166,23 @@ return soma;
          if (oi == 0) {
           oi = '';
          } else if (oi == '*') {
-          oi = 'BB'/*res.write(`<img src ="css/img/bomba.png"></img>`);*/
+          oi = 'BB'
+          /*res.write(`<img src ="css/img/bomba.png"></img>`);*/
          }
+         if ( oi == 'BB'){
+          res.write(`<td id="td0" class="imagem"><img src ="css/img/cabum.gif"></img></td>`);
+         }
+         else if ( oi  == '' || oi <= 4){
         res.write(`<td id="td2">${oi} </td>`);
-        }
+      }
+         }
       }
         res.write('</tr>');
       }
+
+
+    res.write('</table>');
+    res.write('</div>')
 
 
     res.write('</table>');
