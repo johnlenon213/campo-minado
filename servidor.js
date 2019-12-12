@@ -99,7 +99,7 @@ function abrir(i, j) {
   abrir(i + 1, j)
   abrir(i, j + 1)
   abrir(i, j - 1)
-  
+ 
   abrir(i - 1, j + 1)
   abrir(i + 1, j + 1)
   abrir(i - 1, j - 1)
@@ -125,7 +125,7 @@ function soma (table){
     if(table[i][j] == '*'){
       console.log(`voce perdeu`);
       estaVivo = false;
-        
+       
       //se !estaVivo escreva uma div "game over" (div 'GAME OVER')
       res.write('<div id="gameover">')
       res.write('<h1>GAME OVER!</h1>')
@@ -134,8 +134,8 @@ function soma (table){
 
     else if (soma(table2) == 71 && table2 != 'BB' && estaVivo){
       estaVivo = true;
-      
-      //se estaVivo escreva uma div "you win" (div 'GAME OVER')   
+     
+      //se estaVivo escreva uma div "you win" (div 'GAME OVER')  
       res.write('<div id="gameover">')
       res.write('<h1>YOU WIN!</h1>')
       res.write('</div>')
@@ -153,7 +153,7 @@ function soma (table){
 
       for (var j = 0; j <table[i].length; j++) {
         if (table2[i][j] == 0) {
-          
+         
          // celula vazia com link
          res.write(`<td id="td1"><a href="/JOGAR?i=${i}&j=${j}">click</a></td>`);
        }
@@ -234,12 +234,12 @@ function colocarBombas() {
       table[i][j] = 0;
     }
   }
-  
+ 
   while (contarBombas() < 10) {
     var i = Math.floor(Math.random() * 9 * .99)
     var j = Math.floor(Math.random() * 9 * .99)
     console.log(i, j)
-    
+   
     if (table[i][j] != bom) { // nao era bomba
       table[i][j] = bom;
       incrementa(i - 1, j - 1)
